@@ -3,10 +3,22 @@ import { deleteImage, getImages } from "../../services/ApiGallery";
 import { useSearchParams } from "react-router-dom";
 import { BsEraser } from "react-icons/bs";
 import Sort from "../../ui/Sort";
+import toast from "react-hot-toast";
+import { useUser } from "../authentication/useUser";
 
 function GalleryTable() {
   const [images, setImages] = useState([]);
   const [searchParams] = useSearchParams();
+  const { user } = useUser();
+  const authed = user?.role === "authenticated";
+
+  function handleDelete(image) {
+    if (!authed) {
+      toast.error("you need to login to access deleting photo.");
+      return;
+    }
+    deleteImage(image);
+  }
 
   useEffect(() => {
     async function fetchImages() {
@@ -30,7 +42,7 @@ function GalleryTable() {
           images?.map((image) => (
             <div key={image.name} className="relative h-full w-[87%]  py-5">
               <button
-                onClick={() => deleteImage(image.name)}
+                onClick={() => handleDelete(image.name)}
                 className="absolute bottom-6 z-50 left-1 rounded-full p-1 hover:scale-125 transition-all bg-gradient-to-br from-blue-300 to-lime-200 opacity-35"
               >
                 <BsEraser className="size-4" />

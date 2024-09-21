@@ -4,25 +4,32 @@ import { GoAlert } from "react-icons/go";
 import { useUser } from "../features/authentication/useUser";
 import Footer from "../features/dashboard/Footer";
 import P from "../ui/P";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const { user } = useUser();
   const authed = user?.role === "authenticated";
+  const navigate = useNavigate();
 
   return (
     <div className="mt-3 flex flex-col items-center gap-8">
-      <Heading
-        as="h2"
-        className="w-[95%] rounded-xl bg-gradient-to-b from-blue-100 to-lime-100 p-5 text-lg sm:text-2xl"
-      >
-        This platform serves as a secure and welcoming space for users to
-        document and explore newly discovered vocabulary and phrases. To access
-        and modify data within this website’s database, please log in using the
-        email and password provided.
-        <br />
-        <br /> Dear Visitor, If you discovered this website through my resume,
-        the necessary email and password are included therein.
-      </Heading>
+      <div className="flex flex-col w-[95%] rounded-xl bg-gradient-to-b from-blue-100 to-lime-100 p-5 ">
+        <Heading as="h2" className="text-lg sm:text-2xl">
+          This platform serves as a secure and welcoming space for users to
+          document and explore newly discovered vocabulary and phrases. To
+          access and modify data within this website’s database, please log in
+          using the email and password provided.
+          <br />
+          <br /> Dear Visitor, If you discovered this website through my resume,
+          the necessary email and password are included therein.
+        </Heading>
+        <button
+          onClick={() => navigate("/biography")}
+          className="px-3 py-2 bg-gradient-to-br from-lime-200 to-blue-200 rounded-full mt-4 place-self-end w-fit transition-all hover:text-blue-800"
+        >
+          Developers' Biography
+        </button>
+      </div>
       {authed ? (
         <></>
       ) : (

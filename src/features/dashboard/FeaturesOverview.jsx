@@ -12,7 +12,7 @@ function FeaturesOverview() {
   const { images } = useGetImages();
 
   return (
-    <div className="flex w-[95%] flex-col items-center justify-around gap-5 rounded-xl bg-gradient-to-l from-blue-100 via-lime-100 to-blue-100 p-10 sm:flex-row sm:gap-0">
+    <div className="flex w-[95%] flex-col items-center justify-around gap-12  rounded-xl sm:bg-gradient-to-l from-blue-100 via-lime-100 to-blue-100 p-10 sm:flex-row sm:gap-0">
       <FeatureOverview route="vocabs" icon={<IoLanguage className="size-10" />}>
         {vocabRows?.length} vocabs added
       </FeatureOverview>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 function FeatureOverview({ children, route, icon }) {
   const navigate = useNavigate();
   return (
-    <div className="flex h-32 w-52 flex-col items-center justify-around rounded-xl bg-gradient-to-b from-lime-200 via-lime-300 to-blue-300 shadow-2xl shadow-blue-600 hover:scale-[102%] transition-all">
+    <div className="flex h-32 sm:w-56 w-64 flex-col items-center justify-around rounded-xl bg-gradient-to-b from-lime-200 via-lime-300 to-blue-300 shadow-2xl shadow-blue-600 hover:scale-[102%] transition-all">
       <span className="border-b-[1px] border-blue-900 text-2xl text-blue-900 pb-1">
         {children}
       </span>

@@ -4,9 +4,12 @@ import { deletePhrase } from "../../services/ApiPhrases";
 import toast from "react-hot-toast";
 import SpinnerMini from "../../ui/SpinnerMini";
 import { BsEraser } from "react-icons/bs";
+import { useUser } from "../authentication/useUser";
 
 function PhraseRow({ phraseRow }) {
   const { phrase, meaning, difficulty, id } = phraseRow;
+  const { user } = useUser();
+  const authed = user?.role === "authenticated";
 
   const queryClient = useQueryClient();
   const { isLoading: isDeleting, mutate } = useMutation({
@@ -18,6 +21,14 @@ function PhraseRow({ phraseRow }) {
       toast.success("Phrase successfully deleted");
     },
   });
+
+  function handleDelete() {
+    if (!authed) {
+      toast.error("you need to login to access delete phrase.");
+      return;
+    }
+    mutate();
+  }
 
   const newLocal = "bg-rose-400";
   return (
@@ -41,7 +52,7 @@ function PhraseRow({ phraseRow }) {
         {difficulty}
       </span>
       <button
-        onClick={mutate}
+        onClick={handleDelete}
         disabled={isDeleting}
         className="absolute bottom-1 right-4 rounded-full p-2 transition-all hover:scale-110 hover:bg-lime-200"
       >
