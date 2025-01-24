@@ -1,4 +1,4 @@
-# Compound archive
+# Compound archive.
 
 This platform serves as a secure and welcoming space for users to
 document and explore newly discovered vocabulary and phrases. To access
